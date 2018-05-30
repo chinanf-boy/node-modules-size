@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 const meow = require('meow');
+const path = require('path');
+
 const nodeModulesSize = require('.');
 
 const cli = meow(`
@@ -22,7 +24,11 @@ const cli = meow(`
 	if(r){
 		l.stop("good", {ora: 'succeed'})
 		Object.keys(r).forEach(p =>{
-			console.log(p,chalk.green(r[p]))
+			let relative = '\n❤️ >>> '+p
+			if(p !== 'total'){
+				relative = path.relative(cwd, p)
+			}
+			console.log(relative,chalk.green(r[p]))
 		})
 	}else{
 		l.stop("error", {ora: 'fail'})
