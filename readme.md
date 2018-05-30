@@ -13,7 +13,7 @@ npm i -g node-modules-size
 node-modules-size
 ```
 
-![demo-img](./demo/img.png)
+![demo-img](./demo/img.gif)
 
 ## Usage
 
@@ -49,6 +49,9 @@ $ node-modules-size --help
     node-modules-size [cwd]
 ```
 
+## use
+
+- [two-log](https://github.com/chinanf-boy/two-log) 我只需要两种信息输出方式
 
 ## License
 
