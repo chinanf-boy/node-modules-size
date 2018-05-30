@@ -28,7 +28,8 @@
 	"size-limit": [
 		{
 			"path": "dist/node-modules-size.js",
-			"gzip": false
+			"gzip": false,
+			"webpack": false
 		}
 	],
 	"lint-staged": {
