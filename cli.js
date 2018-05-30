@@ -5,16 +5,12 @@ const nodeModulesSize = require('.');
 
 const cli = meow(`
 	Usage
-	  $ node-modules-size [input]
+		$ node-modules-size [cwd]
 
-	Options
-	  --foo  Lorem ipsum [Default: false]
-
-	Examples
-	  $ node-modules-size
-	  unicorns & rainbows
-	  $ node-modules-size ponies
-	  ponies & rainbows
 `);
 
-console.log(nodeModulesSize(cli.input[0] || 'unicorns'));
+(async function run() {
+	let cwd = cli.input[0] ? cli.input[0] : process.cwd()
+	let r  = await nodeModulesSize(cwd)
+	console.log(r)
+})()
