@@ -15,6 +15,8 @@ const cli = meow(`
 	const {twoLog} = require('two-log');
 	const chalk = require('chalk');
 
+	console.time("size run")
+
 	let l = twoLog(cli.flags['D'])
 	l.start('search node_modules ...',{log: 'info'})
 
@@ -33,4 +35,6 @@ const cli = meow(`
 	}else{
 		l.stop("error", {ora: 'fail'})
 	}
+	console.timeEnd("size run")
+
 })()
