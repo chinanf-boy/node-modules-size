@@ -2,10 +2,13 @@
 const Promise = require("bluebird");
 const dirsList = require('dirs-list');
 const execa = require('execa');
+const chalk = require('chalk');
+
 const os = require('os');
 const prettyBytes = require('pretty-bytes');
 const {
-	loggerText
+	loggerText,
+	oneOra
 } = require('two-log')
 
 
@@ -13,15 +16,19 @@ const nodeModuleSize = async function (cwd) {
 	let nodeModulesPath = await dirsList(cwd, ["*node_modules"])
 	let rs = []
 	let total = 0
+	let num = 0
 
+	oneOra(`get -> ${nodeModulesPath.length} <- path`,{color:"red"})
 	if (nodeModulesPath.length) {
 		await Promise.map(
-			nodeModulesPath, (p) => {
+			nodeModulesPath, async (p,i,all) => {
 				let pathResult = await execa("du", ['-s', p]).then(r => r.stdout)
-				loggerText("got size " + pathResult)
+				num ++
+				loggerText(`got size NO: ${chalk.blue(i)} :> done ${chalk.cyan(num)}/${all}`)
 				rs.push(pathResult)
+				return pathResult
 			}, {
-				concurrency: os.cpus().length;
+				concurrency: os.cpus().length
 			}
 		)
 	}
