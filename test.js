@@ -1,11 +1,13 @@
 import test from 'ava';
 import m from '.';
 
-test('title', t => {
-	const err = t.throws(() => {
-		m(123);
-	}, TypeError);
-	t.is(err.message, 'Expected a string, got number');
+test('node-modules-size this project', async t => {
+	let res = await m(__dirname)
+	t.is(!!res.total, true)
+});
 
-	t.is(m('unicorns'), 'unicorns & rainbows');
+
+test.failing('node-modules-size error path', async t => {
+	let res = await m("sdf")
+	t.is(!!res.total, true)
 });
