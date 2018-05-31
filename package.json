@@ -50,6 +50,7 @@
 		"bluebird": "^3.5.1",
 		"dirs-list": "0.0.5",
 		"execa": "^0.10.0",
+		"get-module-name": "0.0.1",
 		"meow": "^5.0.0",
 		"pretty-bytes": "^5.0.0",
 		"two-log": "0.0.9"

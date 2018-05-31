@@ -2,18 +2,33 @@
 'use strict';
 const meow = require('meow');
 const path = require('path');
+const chalk = require('chalk');
+const getName = require('get-module-name')
+
+let cy = chalk.cyan
+let y = chalk.yellow
+let b = chalk.blue
+let z = chalk.magenta
+
 
 const nodeModulesSize = require('.');
 
 const cli = meow(`
-	Usage
-		$ node-modules-size [cwd]
+${z(require('./package.json').version)}
 
+	Usage
+
+		node-modules-size ${y('[cwd]')} ${z('[Options]')}
+
+	Options
+
+		${cy('-P')}  :  < process.cwd() >
+
+		{ use bash:"screencapture -W -P" ${b('select and save the picture')}}
 `);
 
 (async function run() {
 	const {twoLog} = require('two-log');
-	const chalk = require('chalk');
 
 	console.time("size run")
 
@@ -35,6 +50,31 @@ const cli = meow(`
 	}else{
 		l.stop("error", {ora: 'fail'})
 	}
+
 	console.timeEnd("size run")
+	console.log()
+
+	let p = cli.flags['P']
+	if(p){ // picture save use screencapture
+		const execa = require('execa');
+		let cwd = process.cwd()
+		let name = await getName()
+
+		let filename = `${name}.png`
+
+		if(typeof p !== 'boolean'){
+			cwd = path.resolve(cwd, p)
+			!path.extname(cwd) && (cwd = path.resolve(cwd,filename))
+
+		}else{
+			cwd = path.resolve(cwd,filename)
+		}
+
+		await execa('screencapture',["-W","-P",cwd]).then(r =>{
+			console.log('picture save', path.relative(process.cwd(),cwd))
+		})
+
+	}
+
 
 })()

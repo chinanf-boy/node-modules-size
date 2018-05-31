@@ -52,7 +52,14 @@ npm install --global node-modules-size
 $ node-modules-size --help
 
   Usage
-    node-modules-size [cwd]
+    node-modules-size [cwd] [Options]
+
+	Options
+
+		-P default:<process.cwd()> select and picture save
+
+		{ use bash:"screencapture -W -P" select and save the picture}
+
 ```
 
 ## use
