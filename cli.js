@@ -71,7 +71,7 @@ ${z(require('./package.json').version)}
 		}
 
 		await execa('screencapture',["-W","-P",cwd]).then(r =>{
-			console.log('picture save', path.relative(process.cwd(),cwd))
+			console.log('picture save', z(path.relative(process.cwd(),cwd)))
 		})
 
 	}
