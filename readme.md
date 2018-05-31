@@ -15,7 +15,7 @@ node-modules-size
 
 > vue-cli project demo
 
-![demo-img](./demo/img.gif)
+![demo-img](./demo/img.png)
 
 
 
