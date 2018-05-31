@@ -13,7 +13,11 @@ npm i -g node-modules-size
 node-modules-size
 ```
 
+> vue-cli project demo
+
 ![demo-img](./demo/img.gif)
+
+
 
 ## Usage
 
