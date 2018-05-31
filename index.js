@@ -13,7 +13,7 @@ const {
 
 
 const nodeModuleSize = async function (cwd) {
-	let nodeModulesPath = await dirsList(cwd, ["*node_modules"])
+	let nodeModulesPath = await dirsList(cwd, {match:["*node_modules"],ignore:"*.git"})
 	let rs = []
 	let total = 0
 	let num = 0
