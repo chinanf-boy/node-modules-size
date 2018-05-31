@@ -1,7 +1,7 @@
 # node-modules-size [![Build Status](https://travis-ci.org/chinanf-boy/node-modules-size.svg?branch=master)](https://travis-ci.org/chinanf-boy/node-modules-size) [![codecov](https://codecov.io/gh/chinanf-boy/node-modules-size/badge.svg?branch=master)](https://codecov.io/gh/chinanf-boy/node-modules-size?branch=master)
 > cli to show node_modules size
 
-[中文](./readme.md) | ~~[english](./readme.en.md)~~
+[ list with project size ](https://github.com/chinanf-boy/node-modules-size-snapshot)
 
 ## Install
 
@@ -16,6 +16,8 @@ node-modules-size
 > vue-cli project demo
 
 ![demo-img](./demo/img.png)
+
+> more [ project size like ava ... ](https://github.com/chinanf-boy/node-modules-size-snapshot)
 
 
 
