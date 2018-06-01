@@ -44,7 +44,8 @@
 	"keywords": [
 		"cli-app",
 		"cli",
-		""
+		"node-modules",
+		"size"
 	],
 	"dependencies": {
 		"bluebird": "^3.5.1",
