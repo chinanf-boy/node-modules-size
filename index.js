@@ -18,8 +18,8 @@ const nodeModuleSize = async function (cwd) {
 	let total = 0
 	let num = 0
 
-	oneOra(`get -> ${nodeModulesPath.length} <- path`,{color:"red"})
 	if (nodeModulesPath.length) {
+		oneOra(`get -> ${nodeModulesPath.length} <- path`,{color:"red"})
 		await Promise.map(
 			nodeModulesPath, async (p,i,all) => {
 				let pathResult = await execa("du", ['-s', p]).then(r => r.stdout)

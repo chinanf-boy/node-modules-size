@@ -40,17 +40,20 @@ ${z(require('./package.json').version)}
 	let r  = await nodeModulesSize(cwd)
 
 	// show Size
-	if(r){
+	if(r && Object.keys(r).length){
+
 		l.stop("good", {ora: 'succeed'})
 		Object.keys(r).forEach(p =>{
-			let relative = '\n❤️   > '+p
+			let relative = '\n❤️   > '+ p
 			if(p !== 'total'){
 				relative = path.relative(cwd, p)
+				console.log(relative,chalk.green(r[p]))
+			}else{
+				console.log(relative,chalk.bgRed(` ${r[p]} `))
 			}
-			console.log(relative,chalk.green(r[p]))
 		})
 	}else{
-		l.stop("error", {ora: 'fail'})
+		l.stop("error: no node_modules", {ora: 'fail'})
 	}
 
 	// Time run time
