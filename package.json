@@ -53,7 +53,8 @@
 		"get-module-name": "0.0.1",
 		"meow": "^5.0.0",
 		"pretty-bytes": "^5.0.0",
-		"two-log": "0.0.9"
+		"two-log": "0.0.9",
+		"what-time": "0.0.1"
 	},
 	"devDependencies": {
 		"codecov": "^3.0.2",

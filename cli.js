@@ -4,6 +4,7 @@ const meow = require('meow');
 const path = require('path');
 const chalk = require('chalk');
 const getName = require('get-module-name')
+const whatTime = require('what-time');
 
 let cy = chalk.cyan
 let y = chalk.yellow
@@ -30,18 +31,19 @@ ${z(require('./package.json').version)}
 (async function run() {
 	const {twoLog} = require('two-log');
 
-	console.time("size run")
+	let startTime = Date.now()
 
 	let l = twoLog(cli.flags['D'])
-	l.start('search node_modules ...',{log: 'info'})
+	l.start('search node_modules ... ',{log: 'info'})
 
 	let cwd = cli.input[0] ? cli.input[0] : process.cwd()
 	let r  = await nodeModulesSize(cwd)
 
+	// show Size
 	if(r){
 		l.stop("good", {ora: 'succeed'})
 		Object.keys(r).forEach(p =>{
-			let relative = '\n❤️ >>> '+p
+			let relative = '\n❤️   > '+p
 			if(p !== 'total'){
 				relative = path.relative(cwd, p)
 			}
@@ -51,9 +53,15 @@ ${z(require('./package.json').version)}
 		l.stop("error", {ora: 'fail'})
 	}
 
-	console.timeEnd("size run")
-	console.log()
-
+	// Time run time
+	let endTime = Date.now()
+	let t =  endTime - startTime
+	if(t > 1000){
+		console.log(`⏰   < ${z( whatTime(t / 1000) + t % 1000 +'ms')}`)
+	}else{
+		console.log(`⏰   >_< ${z(t + 'ms')}`)
+	}
+	// picture save cli options
 	let p = cli.flags['P']
 	if(p){ // picture save use screencapture
 		const execa = require('execa');
