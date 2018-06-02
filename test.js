@@ -6,6 +6,10 @@ test('node-modules-size this project', async t => {
 	t.is(!!res.total, true)
 });
 
+test('node-modules-size this project default', async t => {
+	let res = await m()
+	t.is(!!res.total, true)
+});
 
 test.failing('node-modules-size error path', async t => {
 	let res = await m("sdf")

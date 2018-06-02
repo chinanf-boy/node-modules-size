@@ -5,6 +5,8 @@ const path = require('path');
 const chalk = require('chalk');
 const getName = require('get-module-name')
 const whatTime = require('what-time');
+const debug = require('debug')('Size:cli');
+
 
 let cy = chalk.cyan
 let y = chalk.yellow
@@ -23,9 +25,17 @@ ${z(require('./package.json').version)}
 
 	Options
 
-		${cy('-P')}  :  < process.cwd() >
+		${cy('-P')} picture  :  < process.cwd() >
 
 		{ use bash:"screencapture -W -P" ${b('select and save the picture')}}
+
+		${cy('-m')} match  :  < *node_modules >
+
+		{ -m "*node_modules,*" ${b('match is Array.prototype.every for path')} cover options}
+
+		${cy('-i')} ignore  :  < *.git >
+
+		{ -i "*.git" ${b('ignore is Array.prototype.some for path')} cover options}
 `);
 
 (async function run() {
@@ -37,7 +47,12 @@ ${z(require('./package.json').version)}
 	l.start('search node_modules ... ',{log: 'info'})
 
 	let cwd = cli.input[0] ? cli.input[0] : process.cwd()
-	let r  = await nodeModulesSize(cwd)
+	let match = cli.flags['m']
+	let ignore = cli.flags['i']
+
+	debug(match,ignore)
+
+	let r  = await nodeModulesSize(cwd,{match,ignore})
 
 	// show Size
 	if(r && Object.keys(r).length){
@@ -53,7 +68,7 @@ ${z(require('./package.json').version)}
 			}
 		})
 	}else{
-		l.stop("error: no node_modules", {ora: 'fail'})
+		l.stop("error: no thing", {ora: 'fail'})
 	}
 
 	// Time run time
@@ -64,6 +79,7 @@ ${z(require('./package.json').version)}
 	}else{
 		console.log(`⏰   >_< ${z(t + 'ms')}`)
 	}
+
 	// picture save cli options
 	let p = cli.flags['P']
 	if(p){ // picture save use screencapture

@@ -32,7 +32,7 @@ let res = await nodeModulesSize();
 
 ## API
 
-### nodeModulesSize(cwd)
+### nodeModulesSize(cwd, options)
 
 #### cwd
 
@@ -41,6 +41,25 @@ name: | cwd
 Type: | `string`
 Default: | `process.cwd()`
 Desc: | dir context
+
+#### options
+
+##### match
+
+name: | match
+---------|----------
+Type: | `string`\|`Array`
+Default: | `*node_modules`
+Desc: | match path use Array.prototype.every
+
+##### ignore
+
+name: | ignore
+---------|----------
+Type: | `string`\|`Array`
+Default: | `*.git`
+Desc: | ignore path use Array.prototype.some
+
 
 ## CLI
 
