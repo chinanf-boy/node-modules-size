@@ -3,8 +3,6 @@ const Promise = require("bluebird");
 const dirsList = require('dirs-list');
 const execa = require('execa');
 const chalk = require('chalk');
-const debug = require('debug')('Size:index');
-
 
 const os = require('os');
 const prettyBytes = require('pretty-bytes');
@@ -20,8 +18,6 @@ const nodeModuleSize = async function (cwd, options = {}) {
 	match = (match && match.split(',')) || "*node_modules"
 	ignore = (ignore && ignore.split(',')) || `*.git`
 
-
-	debug(match,ignore)
 	let nodeModulesPath = await dirsList(cwd, {match,ignore})
 	let rs = []
 	let total = 0

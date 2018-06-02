@@ -5,7 +5,6 @@ const path = require('path');
 const chalk = require('chalk');
 const getName = require('get-module-name')
 const whatTime = require('what-time');
-const debug = require('debug')('Size:cli');
 
 
 let cy = chalk.cyan
@@ -49,8 +48,6 @@ ${z(require('./package.json').version)}
 	let cwd = cli.input[0] ? cli.input[0] : process.cwd()
 	let match = cli.flags['m']
 	let ignore = cli.flags['i']
-
-	debug(match,ignore)
 
 	let r  = await nodeModulesSize(cwd,{match,ignore})
 
