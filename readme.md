@@ -79,6 +79,14 @@ $ node-modules-size --help
 
 		{ use bash:"screencapture -W -P" select and save the picture}
 
+		-m match  :  < *node_modules >
+
+		{ -m "*node_modules,*" match is Array.prototype.every for path cover options}
+
+		-i ignore  :  < *.git >
+
+		{ -i "*.git" ignore is Array.prototype.some for path cover options}
+
 ```
 
 ## use
