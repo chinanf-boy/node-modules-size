@@ -92,6 +92,8 @@ $ node-modules-size --help
 ## use
 
 - [two-log](https://github.com/chinanf-boy/two-log) 我只需要两种信息输出方式
+- [what-time](https://github.com/chinanf-boy/what-time) human readable time
+- [get-module-name](https://github.com/chinanf-boy/get-module-name) just get process.cwd around package.json name
 
 <a href="https://patreon.com/yobrave">
 <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" height="50">
