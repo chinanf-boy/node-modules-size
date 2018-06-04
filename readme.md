@@ -93,6 +93,10 @@ $ node-modules-size --help
 
 - [two-log](https://github.com/chinanf-boy/two-log) 我只需要两种信息输出方式
 
+<a href="https://patreon.com/yobrave">
+<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" height="50">
+</a>
+
 ## License
 
 MIT © [chinanf-boy](http://llever.com)
