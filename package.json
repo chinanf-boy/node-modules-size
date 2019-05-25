@@ -51,6 +51,7 @@
 		"bluebird": "^3.5.1",
 		"dirs-list": "0.0.6",
 		"execa": "^0.10.0",
+		"find-files-rust": "^2.1.0",
 		"get-module-name": "0.0.1",
 		"meow": "^5.0.0",
 		"pretty-bytes": "^5.0.0",
