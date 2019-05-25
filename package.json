@@ -9,7 +9,7 @@
 	"author": {
 		"name": "chinanf-boy",
 		"email": "865501259@qq.com",
-		"url": "llever.com"
+		"url": "http://llever.com"
 	},
 	"bin": "cli.js",
 	"engines": {
@@ -49,14 +49,14 @@
 	],
 	"dependencies": {
 		"bluebird": "^3.5.1",
-		"dirs-list": "0.0.6",
 		"execa": "^0.10.0",
 		"find-files-rust": "^2.1.0",
 		"get-module-name": "0.0.1",
 		"meow": "^5.0.0",
 		"pretty-bytes": "^5.0.0",
 		"two-log": "0.0.9",
-		"what-time": "0.0.1"
+		"what-time": "0.0.1",
+		"yobrave-util": "0.0.3"
 	},
 	"devDependencies": {
 		"codecov": "^3.0.2",
