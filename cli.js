@@ -1,17 +1,15 @@
 #!/usr/bin/env node
 'use strict';
-const meow = require('meow');
 const path = require('path');
+const meow = require('meow');
 const chalk = require('chalk');
-const getName = require('get-module-name')
+const getName = require('get-module-name');
 const whatTime = require('what-time');
 
-
-let cy = chalk.cyan
-let y = chalk.yellow
-let b = chalk.blue
-let z = chalk.magenta
-
+const cy = chalk.cyan;
+const y = chalk.yellow;
+const b = chalk.blue;
+const z = chalk.magenta;
 
 const nodeModulesSize = require('.');
 
@@ -40,65 +38,60 @@ ${z(require('./package.json').version)}
 (async function run() {
 	const {twoLog} = require('two-log');
 
-	let startTime = Date.now()
+	const startTime = Date.now();
 
-	let l = twoLog(cli.flags['D'])
-	l.start('search node_modules ... ',{log: 'info'})
+	const l = twoLog(cli.flags.D);
+	l.start('search node_modules ... ', {log: 'info'});
 
-	let cwd = cli.input[0] ? cli.input[0] : process.cwd()
-	let match = cli.flags['m']
-	let ignore = cli.flags['i']
+	const cwd = cli.input[0] ? cli.input[0] : process.cwd();
+	const match = cli.flags.m;
+	const ignore = cli.flags.i;
 
-	let r  = await nodeModulesSize(cwd,{match,ignore})
+	const r = await nodeModulesSize(cwd, {match, ignore});
 
-	// show Size
-	if(r && Object.keys(r).length){
-
-		l.stop("good", {ora: 'succeed'})
-		Object.keys(r).forEach(p =>{
-			let relative = '\n❤️   > '+ p
-			if(p !== 'total'){
-				relative = path.relative(cwd, p)
-				console.log(relative,chalk.green(r[p]))
-			}else{
-				console.log(relative,chalk.bgRed(` ${r[p]} `))
+	// Show Size
+	if (r && Object.keys(r).length) {
+		l.stop('good', {ora: 'succeed'});
+		Object.keys(r).forEach(p => {
+			let relative = '\n❤️   > ' + p;
+			if (p !== 'total') {
+				relative = path.relative(cwd, p);
+				console.log(relative, chalk.green(r[p]));
+			} else {
+				console.log(relative, chalk.bgRed(` ${r[p]} `));
 			}
-		})
-	}else{
-		l.stop("error: no thing", {ora: 'fail'})
+		});
+	} else {
+		l.stop('error: no thing', {ora: 'fail'});
 	}
 
 	// Time run time
-	let endTime = Date.now()
-	let t =  endTime - startTime
-	if(t > 1000){
-		console.log(`⏰   < ${z( whatTime(t / 1000) + t % 1000 +'ms')}`)
-	}else{
-		console.log(`⏰   >_< ${z(t + 'ms')}`)
+	const endTime = Date.now();
+	const t = endTime - startTime;
+	if (t > 1000) {
+		console.log(`⏰   < ${z(whatTime(t / 1000) + t % 1000 + 'ms')}`);
+	} else {
+		console.log(`⏰   >_< ${z(t + 'ms')}`);
 	}
 
-	// picture save cli options
-	let p = cli.flags['P']
-	if(p){ // picture save use screencapture
+	// Picture save cli options
+	const p = cli.flags.P;
+	if (p) { // Picture save use screencapture
 		const execa = require('execa');
-		let cwd = process.cwd()
-		let name = await getName()
+		let cwd = process.cwd();
+		const name = await getName();
 
-		let filename = `${name}.png`
+		const filename = `${name}.png`;
 
-		if(typeof p !== 'boolean'){
-			cwd = path.resolve(cwd, p)
-			!path.extname(cwd) && (cwd = path.resolve(cwd,filename))
-
-		}else{
-			cwd = path.resolve(cwd,filename)
+		if (typeof p !== 'boolean') {
+			cwd = path.resolve(cwd, p);
+			!path.extname(cwd) && (cwd = path.resolve(cwd, filename));
+		} else {
+			cwd = path.resolve(cwd, filename);
 		}
 
-		await execa('screencapture',["-W","-P",cwd]).then(r =>{
-			console.log('picture save', z(path.relative(process.cwd(),cwd)))
-		})
-
+		await execa('screencapture', ['-W', '-P', cwd]).then(r => {
+			console.log('picture save', z(path.relative(process.cwd(), cwd)));
+		});
 	}
-
-
-})()
+})();
