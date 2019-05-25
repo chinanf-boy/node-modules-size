@@ -2,14 +2,14 @@
 'use strict';
 const path = require('path');
 const meow = require('meow');
-const chalk = require('chalk');
+const chalk = require('yobrave-util');
 const getName = require('get-module-name');
 const whatTime = require('what-time');
 
-const cy = chalk.cyan;
-const y = chalk.yellow;
-const b = chalk.blue;
-const z = chalk.magenta;
+const cy = chalk.c;
+const y = chalk.y;
+const b = chalk.b;
+const z = chalk.m;
 
 const nodeModulesSize = require('.');
 
@@ -28,7 +28,9 @@ ${z(require('./package.json').version)}
 
 		${cy('-m')} match  :  < *node_modules >
 
-		{ -m "*node_modules,*" ${b('match is Array.prototype.every for path')} cover options}
+		{ -m "*node_modules,*" ${b(
+			'match is Array.prototype.every for path'
+		)} cover options}
 
 		${cy('-i')} ignore  :  < *.git >
 
@@ -56,9 +58,9 @@ ${z(require('./package.json').version)}
 			let relative = '\n❤️   > ' + p;
 			if (p !== 'total') {
 				relative = path.relative(cwd, p);
-				console.log(relative, chalk.green(r[p]));
+				console.log(relative, chalk.g(r[p]));
 			} else {
-				console.log(relative, chalk.bgRed(` ${r[p]} `));
+				console.log(relative, chalk.colors.bgRed(` ${r[p]} `));
 			}
 		});
 	} else {
@@ -69,14 +71,15 @@ ${z(require('./package.json').version)}
 	const endTime = Date.now();
 	const t = endTime - startTime;
 	if (t > 1000) {
-		console.log(`⏰   < ${z(whatTime(t / 1000) + t % 1000 + 'ms')}`);
+		console.log(`⏰   < ${z(whatTime(t / 1000) + (t % 1000) + 'ms')}`);
 	} else {
 		console.log(`⏰   >_< ${z(t + 'ms')}`);
 	}
 
 	// Picture save cli options
 	const p = cli.flags.P;
-	if (p) { // Picture save use screencapture
+	if (p) {
+		// Picture save use screencapture
 		const execa = require('execa');
 		let cwd = process.cwd();
 		const name = await getName();
