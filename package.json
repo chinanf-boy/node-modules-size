@@ -16,7 +16,7 @@
 		"node": ">=4"
 	},
 	"scripts": {
-		"test": "nyc ava -v",
+		"test": "npm run build && nyc ava -v",
 		"dev": "microbundle watch",
 		"precommit": "lint-staged",
 		"prepublish": "npm run build",

@@ -18,7 +18,7 @@ const nodeModuleSize = async function(cwd, options = {}) {
 		// No.1 error throw
 		cwd = path.resolve(cwd);
 	} catch (e) {
-		throw new Error(e);
+		cwd = process.cwd();
 	}
 
 	const nodeModulesPath = fd.find(cwd);
