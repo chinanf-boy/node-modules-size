@@ -1,6 +1,6 @@
 {
 	"name": "node-modules-size",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "cli to show node_modules size",
 	"license": "MIT",
 	"main": "dist/node-modules-size.js",
