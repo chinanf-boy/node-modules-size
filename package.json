@@ -50,8 +50,8 @@
 	"dependencies": {
 		"bluebird": "^3.5.1",
 		"execa": "^0.10.0",
-		"find-files-rust": "^2.1.0",
 		"get-module-name": "0.0.1",
+		"get-node-modules-rust": "^1.0.1",
 		"meow": "^5.0.0",
 		"pretty-bytes": "^5.0.0",
 		"two-log": "0.0.9",

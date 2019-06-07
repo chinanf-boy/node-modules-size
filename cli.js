@@ -3,6 +3,7 @@
 const path = require('path');
 const meow = require('meow');
 const chalk = require('yobrave-util');
+const prettyBytes = require('pretty-bytes');
 const getName = require('get-module-name');
 const whatTime = require('what-time');
 
@@ -54,15 +55,23 @@ ${z(require('./package.json').version)}
 	// Show Size
 	if (r && Object.keys(r).length) {
 		l.stop('good', {ora: 'succeed'});
-		Object.keys(r).forEach(p => {
-			let relative = '\n❤️   > ' + p;
-			if (p !== 'total') {
-				relative = path.relative(cwd, p);
-				console.log(relative, chalk.g(r[p]));
-			} else {
-				console.log(relative, chalk.colors.bgRed(` ${r[p]} `));
-			}
-		});
+		Object.keys(r)
+			.sort(function(a, b) {
+				// sort
+
+				return r[a] - r[b];
+			})
+			.forEach(p => {
+				// print all size
+				let humanSize = prettyBytes(r[p])
+				let relative = '\n❤️   > ' + p;
+				if (p !== 'total') {
+					relative = path.relative(cwd, p);
+					console.log(relative, chalk.g(humanSize));
+				} else {
+					console.log(relative, chalk.colors.bgRed(` ${humanSize} `));
+				}
+			});
 	} else {
 		l.stop('error: no thing', {ora: 'fail'});
 	}

@@ -27,8 +27,10 @@ node-modules-size
 const nodeModulesSize = require('node-modules-size');
 
 let res = await nodeModulesSize();
-//=> {"node_modules - path": "kB", //.. , "total":"size"}
+//=> {"node_modules - path-name": "number-size", //.. , "total":"size"}
 ```
+
+> you can use module(`pretty-bytes`) to convert the number-size to human(kB) size.
 
 ## API
 
@@ -94,6 +96,7 @@ $ node-modules-size --help
 - [two-log](https://github.com/chinanf-boy/two-log) 我只需要两种信息输出方式
 - [what-time](https://github.com/chinanf-boy/what-time) human readable time
 - [get-module-name](https://github.com/chinanf-boy/get-module-name) just get process.cwd around package.json name
+- [get-node-modules-rust](https://github.com/chinanf-boy/get-node-modules-rust) use Rust power, search the Given dir of all node_modules folder.
 
 <a href="https://patreon.com/yobrave">
 <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" height="50">
