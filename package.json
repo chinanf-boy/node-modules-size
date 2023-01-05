@@ -64,7 +64,7 @@
 		"lint-staged": "^7.0.0",
 		"microbundle": "^0.4.4",
 		"prettier": "^1.12.1",
-		"ava": "^0.25.0"
+		"ava": "^5.1.0"
 	},
 	"nyc": {
 		"reporter": [
